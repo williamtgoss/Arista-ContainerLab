@@ -87,7 +87,7 @@ topology:
     SPINE3:
       kind: ceos
       mgmt_ipv4: 172.100.100.103
-      startup-config: configs/DC2SPINE1.cfg
+      startup-config: configs/DC2SPINE3.cfg
       ports:
         - '22001:22'
         - '8001:80'
@@ -99,7 +99,7 @@ topology:
     SPINE4:
       kind: ceos
       mgmt_ipv4: 172.100.100.104
-      startup-config: configs/DC2SPINE2.cfg
+      startup-config: configs/DC2SPINE4.cfg
       ports:
         - '22002:22'
         - '8002:80'
