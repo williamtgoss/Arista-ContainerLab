@@ -305,7 +305,7 @@ topology:
     - endpoints: ["SPINE2:et4", "LEAF8:et50"]
 
 #######################
-# SPINES to SPINES #
+# SPINES to SPINES    #
 #######################
     - endpoints: ["SPINE1:et49", "SPINE2:et49"]
     - endpoints: ["SPINE1:et50", "SPINE2:et50"]
