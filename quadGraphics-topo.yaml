@@ -32,7 +32,7 @@ topology:
     graphite:
       kind: linux
       image: netreplica/graphite
-      mgmt_ipv4: 172.100.100.109
+      mgmt_ipv4: 172.100.100.126
       env:
         GRAPHITE_DEFAULT_TYPE: clab
         GRAPHITE_DEFAULT_TOPO: L2LS
