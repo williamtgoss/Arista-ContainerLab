@@ -59,7 +59,7 @@ topology:
     SPINE1:
       kind: ceos
       mgmt_ipv4: 172.100.100.101
-      startup-config: configs/DC1SPINE1.cfg
+      startup-config: Configs/DC1SPINE1.cfg
       ports:
         - '22001:22'
         - '8001:80'
@@ -71,7 +71,7 @@ topology:
     SPINE2:
       kind: ceos
       mgmt_ipv4: 172.100.100.102
-      startup-config: configs/DC1SPINE2.cfg
+      startup-config: Configs/DC1SPINE2.cfg
       ports:
         - '22002:22'
         - '8002:80'
@@ -87,7 +87,7 @@ topology:
     SPINE3:
       kind: ceos
       mgmt_ipv4: 172.100.100.103
-      startup-config: configs/DC2SPINE3.cfg
+      startup-config: Configs/DC2SPINE3.cfg
       ports:
         - '22001:22'
         - '8001:80'
@@ -99,7 +99,7 @@ topology:
     SPINE4:
       kind: ceos
       mgmt_ipv4: 172.100.100.104
-      startup-config: configs/DC2SPINE4.cfg
+      startup-config: Configs/DC2SPINE4.cfg
       ports:
         - '22002:22'
         - '8002:80'
@@ -117,7 +117,7 @@ topology:
     LEAF1:
       kind: ceos
       mgmt_ipv4: 172.100.100.105
-      startup-config: configs/DC1LEAF1.cfg
+      startup-config: Configs/DC1LEAF1.cfg
       ports:
         - '22003:22'
         - '8003:80'
@@ -129,7 +129,7 @@ topology:
     LEAF2:
       kind: ceos
       mgmt_ipv4: 172.100.100.106
-      startup-config: configs/DC1LEAF2.cfg
+      startup-config: Configs/DC1LEAF2.cfg
       ports:
         - '22004:22'
         - '8004:80'
@@ -141,7 +141,7 @@ topology:
     LEAF3:
       kind: ceos
       mgmt_ipv4: 172.100.100.107
-      startup-config: configs/DC1LEAF3.cfg
+      startup-config: Configs/DC1LEAF3.cfg
       ports:
         - '22005:22'
         - '8005:80'
@@ -153,7 +153,7 @@ topology:
     LEAF4:
       kind: ceos
       mgmt_ipv4: 172.100.100.108
-      startup-config: configs/DC1LEAF4.cfg
+      startup-config: Configs/DC1LEAF4.cfg
       ports:
         - '22006:22'
         - '8006:80'
@@ -197,7 +197,7 @@ topology:
     LEAF5:
       kind: ceos
       mgmt_ipv4: 172.100.100.112
-      startup-config: configs/DC2LEAF5.cfg
+      startup-config: Configs/DC2LEAF5.cfg
       ports:
         - '22003:22'
         - '8003:80'
@@ -209,7 +209,7 @@ topology:
     LEAF6:
       kind: ceos
       mgmt_ipv4: 172.100.100.113
-      startup-config: configs/DC1LEAF6.cfg
+      startup-config: Configs/DC1LEAF6.cfg
       ports:
         - '22004:22'
         - '8004:80'
@@ -221,7 +221,7 @@ topology:
     LEAF7:
       kind: ceos
       mgmt_ipv4: 172.100.100.114
-      startup-config: configs/DC1LEAF7.cfg
+      startup-config: Configs/DC1LEAF7.cfg
       ports:
         - '22005:22'
         - '8005:80'
@@ -233,7 +233,7 @@ topology:
     LEAF8:
       kind: ceos
       mgmt_ipv4: 172.100.100.115
-      startup-config: configs/DC1LEAF8.cfg
+      startup-config: Configs/DC1LEAF8.cfg
       ports:
         - '22006:22'
         - '8006:80'
