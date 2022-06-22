@@ -1,8 +1,6 @@
 ---
 # -------------------------------------------------------------
 # Quad Graphics Data Center Topology
-# 2 DCs Each with
-# 2 Spines & 4 Leaf Pairs with MLAG
 # -------------------------------------------------------------
 
 name: quadGraphics
