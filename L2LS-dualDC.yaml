@@ -1,8 +1,8 @@
 ---
 # -------------------------------------------------------------
-# Arista Data Center Topology
+# Quad Graphics Data Center Topology
 # 2 DCs Each with
-# 2 Spines & 2 Leaf Pairs with MLAG
+# 2 Spines & 4 Leaf Pairs with MLAG
 # -------------------------------------------------------------
 
 name: L2LS Dual DC
@@ -14,13 +14,9 @@ mgmt:
 
 topology:
 
-  defaults:
-    env:
-      INTFTYPE: et
-
   kinds:
     ceos:
-      image: ceos:4.27.3F
+      image: ceos:4.28.1F
     linux:
       image: mitchv85/ohv-host
 
@@ -53,13 +49,15 @@ topology:
         graph-hide: yes
 
 #########################
-#DC1 SPINE              #
+# West Allis Spines     #
 #########################
 
-    SPINE1:
+    WIWEA01-DC1-SPINE1:
       kind: ceos
       mgmt_ipv4: 172.100.100.101
-      startup-config: Configs/DC1SPINE1.cfg
+      startup-config: ./configs/WIWEA01-DC1-SPINE1.cfg
+      binds:
+        - ./configs/spine-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
         - '22001:22'
         - '8001:80'
@@ -68,10 +66,12 @@ topology:
         graph-level: 1
         graph-icon: switch
 
-    SPINE2:
+    WIWEA01-DC1-SPINE2:
       kind: ceos
       mgmt_ipv4: 172.100.100.102
-      startup-config: Configs/DC1SPINE2.cfg
+      startup-config: ./configs/WIWEA01-DC1-SPINE2.cfg
+      binds:
+        - ./configs/spine-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
         - '22002:22'
         - '8002:80'
@@ -81,285 +81,433 @@ topology:
         graph-icon: switch
 
 #########################
-#DC2 SPINE              #
+# Sussex Spines         #
 #########################
 
-    SPINE3:
+    WISUS01-DC1-SPINE1:
       kind: ceos
       mgmt_ipv4: 172.100.100.103
-      startup-config: Configs/DC2SPINE3.cfg
+      startup-config: ./configs/WISUS01-DC1-SPINE1.cfg
+      binds:
+        - ./configs/spine-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22001:22'
-        - '8001:80'
-        - '44301:443'
+        - '22003:22'
+        - '8003:80'
+        - '44303:443'
       labels:
         graph-level: 1
         graph-icon: switch
 
-    SPINE4:
+    WISUS01-DC1-SPINE2:
       kind: ceos
       mgmt_ipv4: 172.100.100.104
-      startup-config: Configs/DC2SPINE4.cfg
+      startup-config: ./configs/WISUS01-DC1-SPINE2.cfg
+      binds:
+        - ./configs/spine-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22002:22'
-        - '8002:80'
-        - '44302:443'
+        - '22004:22'
+        - '8004:80'
+        - '44304:443'
       labels:
         graph-level: 1
         graph-icon: switch
 
-
-
 #########################
-#DC1 LEAFs              #
+# West Allis Leaves     #
 #########################
 
-    LEAF1:
+    WIWEA01-DC1-LEAF1:
       kind: ceos
       mgmt_ipv4: 172.100.100.105
-      startup-config: Configs/DC1LEAF1.cfg
+      startup-config: ./configs/WIWEA01-DC1-LEAF1.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22003:22'
-        - '8003:80'
-        - '44303:443'
+        - '22005:22'
+        - '8005:80'
+        - '44305:443'
       labels:
         graph-level: 2
         graph-icon: switch
 
-    LEAF2:
+    WIWEA01-DC1-LEAF2:
       kind: ceos
       mgmt_ipv4: 172.100.100.106
-      startup-config: Configs/DC1LEAF2.cfg
+      startup-config: ./configs/WIWEA01-DC1-LEAF2.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22004:22'
-        - '8004:80'
-        - '44304:443'
+        - '22006:22'
+        - '8006:80'
+        - '44306:443'
       labels:
         graph-level: 2
         graph-icon: switch
 
-    LEAF3:
+    WIWEA01-DC1-LEAF3:
       kind: ceos
       mgmt_ipv4: 172.100.100.107
-      startup-config: Configs/DC1LEAF3.cfg
+      startup-config: ./configs/WIWEA01-DC1-LEAF3.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22005:22'
-        - '8005:80'
-        - '44305:443'
+        - '22007:22'
+        - '8007:80'
+        - '44307:443'
       labels:
         graph-level: 2
         graph-icon: switch
 
-    LEAF4:
+    WIWEA01-DC1-LEAF4:
       kind: ceos
       mgmt_ipv4: 172.100.100.108
-      startup-config: Configs/DC1LEAF4.cfg
+      startup-config: ./configs/WIWEA01-DC1-LEAF4.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22006:22'
-        - '8006:80'
-        - '44306:443'
+        - '22008:22'
+        - '8008:80'
+        - '44308:443'
       labels:
         graph-level: 2
         graph-icon: switch
 
-###########################################
-# DC1 HOSTs                               #
-###########################################
+    WIWEA01-DC1-LEAF5:
+      kind: ceos
+      mgmt_ipv4: 172.100.100.109
+      startup-config: ./configs/WIWEA01-DC1-LEAF5.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
+      ports:
+        - '22009:22'
+        - '8009:80'
+        - '44309:443'
+      labels:
+        graph-level: 2
+        graph-icon: switch
 
-    HOSTA:
-      kind: linux
-      image: mitchv85/ohv-host
+    WIWEA01-DC1-LEAF6:
+      kind: ceos
       mgmt_ipv4: 172.100.100.110
+      startup-config: ./configs/WIWEA01-DC1-LEAF6.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22207:22'
-      exec:
-        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.10.10.100/24 -g 10.10.10.1
+        - '22010:22'
+        - '8010:80'
+        - '44310:443'
       labels:
-        graph-level: 3
-        graph-icon: host
+        graph-level: 2
+        graph-icon: switch
 
-    HOSTB:
-      kind: linux
-      image: mitchv85/ohv-host
+    WIWEA01-DC1-LEAF7:
+      kind: ceos
       mgmt_ipv4: 172.100.100.111
+      startup-config: ./configs/WIWEA01-DC1-LEAF7.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22208:22'
-      exec:
-        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.20.20.100/24 -g 10.20.20.1
+        - '22011:22'
+        - '8011:80'
+        - '44311:443'
       labels:
-        graph-level: 3
-        graph-icon: host
+        graph-level: 2
+        graph-icon: switch
 
-#########################
-#DC2 LEAFs              #
-#########################
-
-    LEAF5:
+    WIWEA01-DC1-LEAF8:
       kind: ceos
       mgmt_ipv4: 172.100.100.112
-      startup-config: Configs/DC2LEAF5.cfg
+      startup-config: ./configs/WIWEA01-DC1-LEAF8.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22003:22'
-        - '8003:80'
-        - '44303:443'
+        - '22012:22'
+        - '8012:80'
+        - '44312:443'
       labels:
         graph-level: 2
         graph-icon: switch
 
-    LEAF6:
+#####################
+# Sussex Leaves     #
+#####################
+
+    WISUS01-DC1-LEAF1:
       kind: ceos
       mgmt_ipv4: 172.100.100.113
-      startup-config: Configs/DC1LEAF6.cfg
+      startup-config: ./configs/WISUS01-DC1-LEAF1.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22004:22'
-        - '8004:80'
-        - '44304:443'
+        - '22013:22'
+        - '8135:80'
+        - '44313:443'
       labels:
         graph-level: 2
         graph-icon: switch
 
-    LEAF7:
+    WISUS01-DC1-LEAF2:
       kind: ceos
       mgmt_ipv4: 172.100.100.114
-      startup-config: Configs/DC1LEAF7.cfg
+      startup-config: ./configs/WISUS01-DC1-LEAF2.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22005:22'
-        - '8005:80'
-        - '44305:443'
+        - '22014:22'
+        - '8014:80'
+        - '44314:443'
       labels:
         graph-level: 2
         graph-icon: switch
 
-    LEAF8:
+    WISUS01-DC1-LEAF3:
       kind: ceos
       mgmt_ipv4: 172.100.100.115
-      startup-config: Configs/DC1LEAF8.cfg
+      startup-config: ./configs/WISUS01-DC1-LEAF3.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
       ports:
-        - '22006:22'
-        - '8006:80'
-        - '44306:443'
+        - '22015:22'
+        - '8015:80'
+        - '44315:443'
+      labels:
+        graph-level: 2
+        graph-icon: switch
+
+    WISUS01-DC1-LEAF4:
+      kind: ceos
+      mgmt_ipv4: 172.100.100.116
+      startup-config: ./configs/WISUS01-DC1-LEAF4.cfg
+      binds:
+        - ./configs/leaf-mappings.json:/mnt/flash/EosIntfMapping.json:ro
+      ports:
+        - '22016:22'
+        - '8016:80'
+        - '44316:443'
       labels:
         graph-level: 2
         graph-icon: switch
 
 ###########################################
-# DC2 HOST                                #
+# West Allis HOSTs                        #
 ###########################################
 
-    HOSTC:
-      kind: linux
-      image: mitchv85/ohv-host
-      mgmt_ipv4: 172.100.100.116
-      ports:
-        - '22207:22'
-      exec:
-        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.30.30.100/24 -g 10.30.30.1
-      labels:
-        graph-level: 3
-        graph-icon: host
-
-    HOSTD:
+    WIWEA01-DC1-HOST1:
       kind: linux
       image: mitchv85/ohv-host
       mgmt_ipv4: 172.100.100.117
       ports:
-        - '22208:22'
+        - '22017:22'
       exec:
-        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.40.40.100/24 -g 10.40.40.1
+        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.10.10.101/24 -g 10.10.10.1
       labels:
         graph-level: 3
         graph-icon: host
 
+    WIWEA01-DC1-HOST2:
+      kind: linux
+      image: mitchv85/ohv-host
+      mgmt_ipv4: 172.100.100.118
+      ports:
+        - '22018:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.20.20.102/24 -g 10.20.20.1
+      labels:
+        graph-level: 3
+        graph-icon: host
+
+    WIWEA01-DC1-HOST3:
+      kind: linux
+      image: mitchv85/ohv-host
+      mgmt_ipv4: 172.100.100.119
+      ports:
+        - '22019:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.10.10.103/24 -g 10.10.10.1
+      labels:
+        graph-level: 3
+        graph-icon: host
+
+    WIWEA01-DC1-HOST4:
+      kind: linux
+      image: mitchv85/ohv-host
+      mgmt_ipv4: 172.100.100.120
+      ports:
+        - '22020:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.30.30.104/24 -g 10.30.30.1
+      labels:
+        graph-level: 3
+        graph-icon: host
+
+#######################################
+# Sussex HOSTs                        #
+#######################################
+
+    WISUS01-DC1-HOST1:
+      kind: linux
+      image: mitchv85/ohv-host
+      mgmt_ipv4: 172.100.100.121
+      ports:
+        - '22021:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.10.10.201/24 -g 10.10.10.1
+      labels:
+        graph-level: 3
+        graph-icon: host
+
+    WISUS01-DC1-HOST2:
+      kind: linux
+      image: mitchv85/ohv-host
+      mgmt_ipv4: 172.100.100.122
+      ports:
+        - '22022:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.20.20.202/24 -g 10.20.20.1
+      labels:
+        graph-level: 3
+        graph-icon: host
+
+    WISUS01-DC1-HOST3:
+      kind: linux
+      image: mitchv85/ohv-host
+      mgmt_ipv4: 172.100.100.123
+      ports:
+        - '22023:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.40.40.203/24 -g 10.40.40.1
+      labels:
+        graph-level: 3
+        graph-icon: host
+
+###########################################
+# Simulate Core - Not Attached to CVP     #
+###########################################
+
+    CORE1:
+      kind: ceos
+      mgmt_ipv4: 172.100.100.124
+      startup-config: ./configs/CORE1.cfg
+      binds:
+        - ./configs/spine-mappings.json:/mnt/flash/EosIntfMapping.json:ro
+      ports:
+        - '22024:22'
+        - '8024:80'
+        - '44324:443'
+      labels:
+        graph-level: 2
+        graph-icon: switch
+
+    CORE2:
+      kind: ceos
+      mgmt_ipv4: 172.100.100.125
+      startup-config: ./configs/CORE2.cfg
+      binds:
+        - ./configs/spine-mappings.json:/mnt/flash/EosIntfMapping.json:ro
+      ports:
+        - '22025:22'
+        - '8025:80'
+        - '44325:443'
+      labels:
+        graph-level: 2
+        graph-icon: switch
+
   links:
 
-#######################
-# DC1SPINE1 to LEAF   #
-#######################
-    - endpoints: ["SPINE1:et1", "LEAF1:et49"]
-    - endpoints: ["SPINE1:et2", "LEAF2:et49"]
-    - endpoints: ["SPINE1:et3", "LEAF3:et49"]
-    - endpoints: ["SPINE1:et4", "LEAF4:et49"]
+########################
+# WEA SPINE1 to LEAF   #
+########################
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth1", "WIWEA01-DC1-LEAF1:eth5"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth2", "WIWEA01-DC1-LEAF2:eth5"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth3", "WIWEA01-DC1-LEAF3:eth5"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth4", "WIWEA01-DC1-LEAF4:eth5"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth5", "WIWEA01-DC1-LEAF5:eth5"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth6", "WIWEA01-DC1-LEAF6:eth5"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth7", "WIWEA01-DC1-LEAF7:eth5"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth8", "WIWEA01-DC1-LEAF8:eth5"]
 
-#######################
-# DC1SPINE2 to LEAF   #
-#######################
-    - endpoints: ["SPINE2:et1", "LEAF1:et50"]
-    - endpoints: ["SPINE2:et2", "LEAF2:et50"]
-    - endpoints: ["SPINE2:et3", "LEAF3:et50"]
-    - endpoints: ["SPINE2:et4", "LEAF4:et50"]
+########################
+# WEA SPINE1 to LEAF   #
+########################
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth1", "WIWEA01-DC1-LEAF1:eth6"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth2", "WIWEA01-DC1-LEAF2:eth6"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth3", "WIWEA01-DC1-LEAF3:eth6"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth4", "WIWEA01-DC1-LEAF4:eth6"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth5", "WIWEA01-DC1-LEAF5:eth6"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth6", "WIWEA01-DC1-LEAF6:eth6"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth7", "WIWEA01-DC1-LEAF7:eth6"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth8", "WIWEA01-DC1-LEAF8:eth6"]
 
-#######################
-# DC2SPINE3 to LEAF   #
-#######################
-    - endpoints: ["SPINE3:et1", "LEAF5:et49"]
-    - endpoints: ["SPINE3:et2", "LEAF6:et49"]
-    - endpoints: ["SPINE3:et3", "LEAF7:et49"]
-    - endpoints: ["SPINE3:et4", "LEAF8:et49"]
+########################
+# SUS SPINE1 to LEAF   #
+########################
+    - endpoints: ["WISUS01-DC1-SPINE1:eth1", "WISUS01-DC1-LEAF1:eth5"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth2", "WISUS01-DC1-LEAF2:eth5"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth3", "WISUS01-DC1-LEAF3:eth5"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth4", "WISUS01-DC1-LEAF4:eth5"]
 
-#######################
-# DC2SPINE4 to LEAF   #
-#######################
-    - endpoints: ["SPINE4:et1", "LEAF5:et50"]
-    - endpoints: ["SPINE4:et2", "LEAF6:et50"]
-    - endpoints: ["SPINE4:et3", "LEAF7:et50"]
-    - endpoints: ["SPINE4:et4", "LEAF8:et50"]
+########################
+# SUS SPINE1 to LEAF   #
+########################
+    - endpoints: ["WISUS01-DC1-SPINE2:eth1", "WISUS01-DC1-LEAF1:eth6"]
+    - endpoints: ["WISUS01-DC1-SPINE2:eth2", "WISUS01-DC1-LEAF2:eth6"]
+    - endpoints: ["WISUS01-DC1-SPINE2:eth3", "WISUS01-DC1-LEAF3:eth6"]
+    - endpoints: ["WISUS01-DC1-SPINE2:eth4", "WISUS01-DC1-LEAF4:eth6"]
 
-#######################
-# SPINES to SPINES    #
-#######################
-    - endpoints: ["SPINE1:et49", "SPINE2:et49"]
-    - endpoints: ["SPINE1:et50", "SPINE2:et50"]
-    - endpoints: ["SPINE3:et49", "SPINE4:et49"]
-    - endpoints: ["SPINE3:et50", "SPINE4:et50"]
-    - endpoints: ["SPINE1:et51", "SPINE3:et51"]
-    - endpoints: ["SPINE2:et51", "SPINE4:et51"]
-
-####################
-# LEAF1 to LEAF2   #
-####################
-    - endpoints: ["LEAF1:et53", "LEAF2:et53"]
-    - endpoints: ["LEAF1:et54", "LEAF2:et54"]
-
-####################
-# LEAF3 to LEAF4   #
-####################
-    - endpoints: ["LEAF3:et53", "LEAF4:et53"]
-    - endpoints: ["LEAF3:et54", "LEAF4:et54"]
+######################
+# SPINE Peer-links   #
+######################
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth11", "WIWEA01-DC1-SPINE2:eth11"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth12", "WIWEA01-DC1-SPINE2:eth12"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth11", "WISUS01-DC1-SPINE2:eth11"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth12", "WISUS01-DC1-SPINE2:eth12"]
 
 ####################
-# LEAF5 to LEAF6   #
+# LEAF Peer-links  #
 ####################
-    - endpoints: ["LEAF1:et53", "LEAF2:et53"]
-    - endpoints: ["LEAF1:et54", "LEAF2:et54"]
+    - endpoints: ["WIWEA01-DC1-LEAF1:eth11", "WIWEA01-DC1-LEAF2:eth11"]
+    - endpoints: ["WIWEA01-DC1-LEAF1:eth12", "WIWEA01-DC1-LEAF2:eth12"]
+    - endpoints: ["WIWEA01-DC1-LEAF3:eth11", "WIWEA01-DC1-LEAF4:eth11"]
+    - endpoints: ["WIWEA01-DC1-LEAF3:eth12", "WIWEA01-DC1-LEAF4:eth12"]
+    - endpoints: ["WIWEA01-DC1-LEAF5:eth11", "WIWEA01-DC1-LEAF6:eth11"]
+    - endpoints: ["WIWEA01-DC1-LEAF5:eth12", "WIWEA01-DC1-LEAF6:eth12"]
+    - endpoints: ["WIWEA01-DC1-LEAF7:eth11", "WIWEA01-DC1-LEAF8:eth11"]
+    - endpoints: ["WIWEA01-DC1-LEAF7:eth12", "WIWEA01-DC1-LEAF8:eth12"]
+    - endpoints: ["WISUS01-DC1-LEAF1:eth11", "WISUS01-DC1-LEAF2:eth11"]
+    - endpoints: ["WISUS01-DC1-LEAF1:eth12", "WISUS01-DC1-LEAF2:eth12"]
+    - endpoints: ["WISUS01-DC1-LEAF3:eth11", "WISUS01-DC1-LEAF4:eth11"]
+    - endpoints: ["WISUS01-DC1-LEAF3:eth12", "WISUS01-DC1-LEAF4:eth12"]
 
 ####################
-# LEAF7 to LEAF8   #
+# WEA Hosts        #
 ####################
-    - endpoints: ["LEAF3:et53", "LEAF4:et53"]
-    - endpoints: ["LEAF3:et54", "LEAF4:et54"]
-
-
-####################
-# HOSTA            #
-####################
-    - endpoints: ["HOSTA:eth1", "LEAF1:et5"]
-    - endpoints: ["HOSTA:eth2", "LEAF2:et5"]
-
-####################
-# HOSTB            #
-####################
-    - endpoints: ["HOSTB:eth1", "LEAF3:et5"]
-    - endpoints: ["HOSTB:eth2", "LEAF4:et5"]
+    - endpoints: ["WIWEA01-DC1-HOST1:eth1", "WIWEA01-DC1-LEAF1:eth1"]
+    - endpoints: ["WIWEA01-DC1-HOST1:eth2", "WIWEA01-DC1-LEAF2:eth1"]
+    - endpoints: ["WIWEA01-DC1-HOST2:eth1", "WIWEA01-DC1-LEAF3:eth1"]
+    - endpoints: ["WIWEA01-DC1-HOST2:eth2", "WIWEA01-DC1-LEAF4:eth1"]
+    - endpoints: ["WIWEA01-DC1-HOST3:eth1", "WIWEA01-DC1-LEAF5:eth1"]
+    - endpoints: ["WIWEA01-DC1-HOST3:eth2", "WIWEA01-DC1-LEAF6:eth1"]
+    - endpoints: ["WIWEA01-DC1-HOST4:eth1", "WIWEA01-DC1-LEAF7:eth1"]
+    - endpoints: ["WIWEA01-DC1-HOST4:eth2", "WIWEA01-DC1-LEAF8:eth1"]
 
 ####################
-# HOSTC            #
+# SUS Hosts        #
 ####################
-    - endpoints: ["HOSTC:eth1", "LEAF5:et5"]
-    - endpoints: ["HOSTC:eth2", "LEAF6:et5"]
+    - endpoints: ["WISUS01-DC1-HOST1:eth1", "WISUS01-DC1-LEAF1:eth1"]
+    - endpoints: ["WISUS01-DC1-HOST1:eth2", "WISUS01-DC1-LEAF2:eth1"]
+    - endpoints: ["WISUS01-DC1-HOST2:eth1", "WISUS01-DC1-LEAF3:eth1"]
+    - endpoints: ["WISUS01-DC1-HOST2:eth2", "WISUS01-DC1-LEAF4:eth1"]
+    - endpoints: ["WISUS01-DC1-HOST3:eth1", "WISUS01-DC1-LEAF3:eth2"]
+    - endpoints: ["WISUS01-DC1-HOST3:eth2", "WISUS01-DC1-LEAF4:eth2"]
 
-####################
-# HOSTD            #
-####################
-    - endpoints: ["HOSTD:eth1", "LEAF7:et5"]
-    - endpoints: ["HOSTD:eth2", "LEAF8:et5"]
-
+###########################
+# Core Connections        #
+###########################
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth9", "CORE1:eth1"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth10", "CORE2:eth1"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth9", "CORE1:eth2"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth10", "CORE2:eth2"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth9", "CORE1:eth3"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth10", "CORE2:eth3"]
+    - endpoints: ["WISUS01-DC1-SPINE2:eth9", "CORE1:eth4"]
+    - endpoints: ["WISUS01-DC1-SPINE2:eth10", "CORE2:eth4"]
