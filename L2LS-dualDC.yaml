@@ -312,7 +312,7 @@ topology:
     - endpoints: ["SPINE3:et49", "SPINE4:et49"]
     - endpoints: ["SPINE3:et50", "SPINE4:et50"]
     - endpoints: ["SPINE1:et51", "SPINE3:et51"]
-    - endpoints: ["SPINE2:et51, "SPINE4:et51"]
+    - endpoints: ["SPINE2:et51", "SPINE4:et51"]
 
 ####################
 # LEAF1 to LEAF2   #
