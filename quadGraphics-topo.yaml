@@ -35,7 +35,7 @@ topology:
       mgmt_ipv4: 172.100.100.126
       env:
         GRAPHITE_DEFAULT_TYPE: clab
-        GRAPHITE_DEFAULT_TOPO: L2LS
+        GRAPHITE_DEFAULT_TOPO: quadGraphics
         # CLAB_SSH_CONNECTION: ${SSH_CONNECTION}
       binds:
         # - .:/var/www/localhost/htdocs/clab   <----  This is the old path in docker image netreplica/graphite:webssh2
