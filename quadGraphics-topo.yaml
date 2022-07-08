@@ -309,7 +309,7 @@ topology:
       ports:
         - '22018:22'
       exec:
-        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.60.60.102/24 -g 10.60.60.1
+        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.60.60.101/24 -g 10.60.60.1
       labels:
         graph-level: 4
         graph-icon: host
