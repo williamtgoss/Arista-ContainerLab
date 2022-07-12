@@ -30,7 +30,7 @@ topology:
     graphite:
       kind: linux
       image: netreplica/graphite
-      mgmt_ipv4: 172.100.100.126
+      mgmt_ipv4: 172.100.100.128
       env:
         GRAPHITE_DEFAULT_TYPE: clab
         GRAPHITE_DEFAULT_TOPO: quadGraphics
@@ -410,6 +410,38 @@ topology:
         graph-level: 1
         graph-icon: switch
 
+#########################################
+# Simulate FW - Not Attached to CVP     #
+#########################################
+
+    CORE1:
+      kind: ceos
+      mgmt_ipv4: 172.100.100.126
+      startup-config: ./configs/WIWEA01-DC1-FW.cfg
+      binds:
+        - ./configs/spine-mappings.json:/mnt/flash/EosIntfMapping.json:ro
+      ports:
+        - '22026:22'
+        - '8026:80'
+        - '44326:443'
+      labels:
+        graph-level: 1
+        graph-icon: switch
+
+    CORE2:
+      kind: ceos
+      mgmt_ipv4: 172.100.100.127
+      startup-config: ./configs/WISUS01-DC1-FW.cfg
+      binds:
+        - ./configs/spine-mappings.json:/mnt/flash/EosIntfMapping.json:ro
+      ports:
+        - '22027:22'
+        - '8027:80'
+        - '44327:443'
+      labels:
+        graph-level: 1
+        graph-icon: switch
+
   links:
 
 ########################
@@ -455,10 +487,10 @@ topology:
 ######################
 # SPINE Peer-links   #
 ######################
-    - endpoints: ["WIWEA01-DC1-SPINE1:eth11", "WIWEA01-DC1-SPINE2:eth11"]
     - endpoints: ["WIWEA01-DC1-SPINE1:eth12", "WIWEA01-DC1-SPINE2:eth12"]
-    - endpoints: ["WISUS01-DC1-SPINE1:eth11", "WISUS01-DC1-SPINE2:eth11"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth13", "WIWEA01-DC1-SPINE2:eth13"]
     - endpoints: ["WISUS01-DC1-SPINE1:eth12", "WISUS01-DC1-SPINE2:eth12"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth13", "WISUS01-DC1-SPINE2:eth13"]
 
 ####################
 # LEAF Peer-links  #
@@ -501,11 +533,19 @@ topology:
 ###########################
 # Core Connections        #
 ###########################
-    - endpoints: ["WIWEA01-DC1-SPINE1:eth9", "CORE1:eth1"]
-    - endpoints: ["WIWEA01-DC1-SPINE1:eth10", "CORE2:eth1"]
-    - endpoints: ["WIWEA01-DC1-SPINE2:eth9", "CORE1:eth2"]
-    - endpoints: ["WIWEA01-DC1-SPINE2:eth10", "CORE2:eth2"]
-    - endpoints: ["WISUS01-DC1-SPINE1:eth9", "CORE1:eth3"]
-    - endpoints: ["WISUS01-DC1-SPINE1:eth10", "CORE2:eth3"]
-    - endpoints: ["WISUS01-DC1-SPINE2:eth9", "CORE1:eth4"]
-    - endpoints: ["WISUS01-DC1-SPINE2:eth10", "CORE2:eth4"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth10", "CORE1:eth1"]
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth11", "CORE2:eth1"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth10", "CORE1:eth2"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth11", "CORE2:eth2"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth10", "CORE1:eth3"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth11", "CORE2:eth3"]
+    - endpoints: ["WISUS01-DC1-SPINE2:eth10", "CORE1:eth4"]
+    - endpoints: ["WISUS01-DC1-SPINE2:eth11", "CORE2:eth4"]
+
+#########################
+# FW Connections        #
+#########################
+    - endpoints: ["WIWEA01-DC1-SPINE1:eth9", "WIWEA01-DC1-FW:eth1"]
+    - endpoints: ["WIWEA01-DC1-SPINE2:eth9", "WIWEA01-DC1-FW:eth2"]
+    - endpoints: ["WISUS01-DC1-SPINE1:eth9", "WISUS01-DC1-FW:eth1"]
+    - endpoints: ["WISUS01-DC1-SPINE2:eth9", "WISUS01-DC1-FW:eth2"]

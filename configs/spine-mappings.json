@@ -11,9 +11,10 @@
       "eth6": "Ethernet6/1",
       "eth7": "Ethernet7/1",
       "eth8": "Ethernet8/1",
-      "eth9": "Ethernet29/1",
-      "eth10": "Ethernet30/1",
-      "eth11": "Ethernet31/1",
-      "eth12": "Ethernet32/1"
+      "eth9": "Ethernet28/1",
+      "eth10": "Ethernet29/1",
+      "eth11": "Ethernet30/1",
+      "eth12": "Ethernet31/1",
+      "eth13": "Ethernet32/1"
     }
   }
