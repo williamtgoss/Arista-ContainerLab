@@ -414,7 +414,7 @@ topology:
 # Simulate FW - Not Attached to CVP     #
 #########################################
 
-    CORE1:
+    WIWEA01-DC1-FW:
       kind: ceos
       mgmt_ipv4: 172.100.100.126
       startup-config: ./configs/WIWEA01-DC1-FW.cfg
@@ -428,7 +428,7 @@ topology:
         graph-level: 1
         graph-icon: switch
 
-    CORE2:
+    WISUS01-DC1-FW:
       kind: ceos
       mgmt_ipv4: 172.100.100.127
       startup-config: ./configs/WISUS01-DC1-FW.cfg
