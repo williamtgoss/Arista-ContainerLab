@@ -362,6 +362,18 @@ topology:
         graph-level: 4
         graph-icon: host
 
+    WIWEA01-DC1-HOST7:
+      kind: linux
+      image: mitchv85/ohv-host
+      mgmt_ipv4: 172.100.100.133
+      ports:
+        - '22033:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.12.12.101/24 -g 10.12.12.1
+      labels:
+        graph-level: 4
+        graph-icon: host
+
 #######################################
 # Sussex HOSTs                        #
 #######################################
@@ -422,6 +434,18 @@ topology:
         - '22032:22'
       exec:
         - bash /usr/local/bin/hostnetconfig.sh -i 10.92.92.201/24 -g 10.92.92.1
+      labels:
+        graph-level: 4
+        graph-icon: host
+
+    WISUS01-DC1-HOST6:
+      kind: linux
+      image: mitchv85/ohv-host
+      mgmt_ipv4: 172.100.100.134
+      ports:
+        - '22034:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i 10.22.22.201/24 -g 10.22.22.1
       labels:
         graph-level: 4
         graph-icon: host
@@ -569,6 +593,7 @@ topology:
     - endpoints: ["WIWEA01-DC1-HOST4:eth2", "WIWEA01-DC1-LEAF8:eth1"]
     - endpoints: ["WIWEA01-DC1-HOST5:eth1", "WIWEA01-DC1-LEAF1:eth2"]
     - endpoints: ["WIWEA01-DC1-HOST6:eth1", "WIWEA01-DC1-LEAF4:eth2"]
+    - endpoints: ["WIWEA01-DC1-HOST7:eth1", "WIWEA01-DC1-LEAF5:eth2"]
 
 ####################
 # SUS Hosts        #
@@ -581,6 +606,7 @@ topology:
     - endpoints: ["WISUS01-DC1-HOST3:eth2", "WISUS01-DC1-LEAF4:eth2"]
     - endpoints: ["WISUS01-DC1-HOST4:eth1", "WISUS01-DC1-LEAF2:eth2"]
     - endpoints: ["WISUS01-DC1-HOST5:eth1", "WISUS01-DC1-LEAF3:eth3"]
+    - endpoints: ["WISUS01-DC1-HOST6:eth1", "WISUS01-DC1-LEAF1:eth2"]
 
 ###########################
 # Core Connections        #
