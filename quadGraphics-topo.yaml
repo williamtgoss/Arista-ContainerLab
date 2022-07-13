@@ -397,7 +397,7 @@ topology:
       ports:
         - '22022:22'
       exec:
-        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.20.20.202/24 -g 10.20.20.1
+        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.20.20.201/24 -g 10.20.20.1
       labels:
         graph-level: 4
         graph-icon: host
@@ -409,7 +409,7 @@ topology:
       ports:
         - '22023:22'
       exec:
-        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.40.40.203/24 -g 10.40.40.1
+        - bash /usr/local/bin/hostnetconfig.sh -b -i 10.40.40.201/24 -g 10.40.40.1
       labels:
         graph-level: 4
         graph-icon: host
